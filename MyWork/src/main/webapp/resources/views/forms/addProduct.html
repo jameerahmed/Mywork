@@ -1,0 +1,102 @@
+
+  <!-- Content Wrapper. Contains page content -->
+  <div  ng-controller="productController">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Role Management
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Forms</a></li>
+        <li class="active">General Elements</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <!-- left column -->
+        <div class="col-md-6">
+          <!-- general form elements -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">New Role</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form" ng-submit="addProduct()">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Product Name</label>
+                  <input type="text" class="form-control" ng-model="product.name" placeholder="Enter Product Name">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Product Price</label>
+                  <input type="text" class="form-control" ng-model="product.price" placeholder="Enter Product Price">
+                </div>
+                <div class="form-group">
+                  <label>Descirption</label>
+                  <textarea class="form-control" rows="3" ng-model="product.description" placeholder="Enter Product Description"></textarea>
+                </div>
+                
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
+          </div>
+           <div class="col-md-12">
+          <!-- <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Role List</h3>
+            </div>
+            /.box-header
+              <div class="box-body"><div class="input-group col-md-3"></div>
+            <div class="input-group col-md-3">
+	          <input type="text" ng-model="searchText" class="form-control" placeholder="Search...">
+	              <span class="input-group-btn">
+	                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+	                </button>
+	              </span>
+	        </div>
+          
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Sr No</th>
+                  <th>Name</th>
+                  <th>Created By</th>
+                </tr>
+                </thead>
+                <tbody dir-paginate="x in role | filter:searchText | itemsPerPage: 5" current-page="currentPage">
+                <tr>
+                 	<td>{{$index+1}}</td>
+                  <td>{{x.name}}</td>
+                  <td>{{x.createdBy}}
+                  </td>
+                </tr>
+                </tfoot>
+              </table>
+              <div class="text-center">
+						<dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="resources/views/common/dirPagination.tpl.html"></dir-pagination-controls>
+				</div>
+            </div>
+          </div> -->
+
+
+          <!-- Input addon -->
+
+        </div>
+        <!--/.col (left) -->
+        <!-- right column -->
+        <!--/.col (right) -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->

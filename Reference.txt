@@ -1,0 +1,6 @@
+Step1: Need==> 
+	1) Mysql 5.5 or latest
+	2) Mysql Query Browser
+	4) STS 3.7.3 or Latest
+	5) JDK 8
+	

@@ -1,0 +1,133 @@
+<div class="panel panel-default panel panel-height"  ng-controller="notificationCtrl">
+<div class="panel-body" >
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<div class="row">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " style="text-align:right;">
+		<!-- <i class="" style="color:#2b957a;"   ng-click=""></i> -->
+		
+		<!-- <button class="btn btnTheme"  type="button" ng-click="viewCreateForm();" title="Create" ng-show="create">
+			<span class="btnTheme-label"><i class="fa fa-plus-circle"></i></span>Create Notification
+		</button>
+		<button class="btn btnTheme"  type="button" ng-click="getNotificationList();" title="view" ng-show="view">
+			<span class="btnTheme-label"><i class="fa fa-bell"></i></span>View Notification
+		</button> -->
+		<!-- <i class="fa fa-bell fa-2x" style="color:#2b957a;"  ng-show="view" ng-click="getNotificationList();"></i> -->
+	</div>
+</div>
+
+<!-- view notification  -->
+<!--  <div id="viewNotification" class=" row" ng-show="viewNotification" id="spinner_div" style="margin-top: 3% ;" >
+	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 col-sm-offset-1" ng-repeat="notification in notificationList " ng-if="notificationList.length >0">
+		<div class="col-sm-12" style="padding:10px;font-size: 15px;font-style: bold; border-bottom: 1px solid #33af90; " >
+			{{notification.createdDate}}
+		</div>
+		<div class="col-lg-11 col-md-11 col-sm-11 col-xs-11  col-sm-offset-1" style="padding: 10px; ">
+		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 ">
+			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style=" padding: 10px; font-size: 15px;">{{notification.description}}</div>
+			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style=" padding: 10px; color: blue;">{{notification.senderName}}</div>
+			</div>	
+		<div class=" col-lg-4 col-md-4 col-sm-4 col-xs-4" style="float:left;"> {{notification.attach}}<img src="app/img/SRM/pasta.png" height="90px" width="70px"/></div>
+		</div>
+		
+		
+</div>
+</div>-->
+<!--end  view notification  -->
+
+<!-- create notification -->
+<div class="row" id="createNotification" style="text-align: center;" ng-show="createNotification">
+<br><br><br>
+
+   <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 ">
+      <!-- START panel-->
+        <form class="form-horizontal" name="notoficationForm" id="notoficationFormId" role="form" novalidate ng-submit="addNote()">
+               <div class="form-group">
+                  <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label">To<span class="mandatory-mark">*</span></label>
+                  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 ">
+                     <select  name="to" class="form-control"  ng-model="notification.to"  required="required" >
+                     <option  value="" disabled selected >Select Recipient</option>
+                     <option value = "{{toList.recipientId}}"  ng-repeat=" toList in toOptionsList" >{{toList.recipientName}}</option>
+                     </select>
+                    
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label">Valid till<span class="mandatory-mark">*</span></label>
+                  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                     <select name="validity" class="form-control"  ng-model="notification.validity"  required="required" >
+                     <option ng-repeat="nameList in optionsList" >{{nameList.name}}</option>
+                     </select>
+                   
+                   
+                  </div>
+               </div>
+               <div class="form-group">
+                  
+                 <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label">Message<span class="mandatory-mark">*</span></label>
+                  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                 <textarea rows="3" cols="10" maxlength="200" class="form-control" name="desc" placeholder="Type message" ng-model="notification.desc" required="required"></textarea>
+                  <div ng-messages="notoficationForm.desc.$error" ng-if="notoficationForm.$submitted || notoficationForm.desc.$touched" class="errorMsg" role="alert">
+							    <div  ng-if="!notification.desc" ng-show="msg">Enter message</div>
+							  	
+					 </div>
+                  </div>
+                 
+               </div>
+               <div class="form-group">
+               <div class="row">
+               <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 "></div>
+               <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10" >
+               <!-- <input type="file"  name="fileName" id="photofileSel" ng-model="notification.fileName"   ng-file-select="onFileSelect1($files)" /> --> 
+                <!--<input type="file" name="fileName" ng-model="fileName"  file-upload/> -->
+                <input type="file" ng-file-select="onFileSelect($files)">
+                </div>
+               
+                  <!-- <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="text-align: right;">
+ 		                  	<button type="button" name="priorityBtn" id="setPriority" ng-class="setGrey" ng-model="notification.priorityBtn" ng-click="setPriority();"><i class="fa fa-exclamation-triangle" aria-hidden="true" title="Priority"></i></button>
+                  			<input type="hidden" name="priority"  ng-model="notification.priority" />	
+                  </div> -->
+                  </div>
+                  </div>
+               </div>
+               
+                <div class="form-group">
+               <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-8 col-xs-8 col-lg-offset-9">
+                 <button type="reset" style = "display:inline-block; width:35%" class="btn btn-sm btn-default btn-color col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-click="reset()" >Cancel</button>
+                 <button type="submit" style = "display:inline-block; width:35%" class="btn btn-sm btn-default btn-color col-lg-4 col-md-4 col-sm-4 col-xs-4"  >Send</button>
+                  
+                  </div>
+                  </div>
+               </div>
+            </form>
+            
+            
+            
+            
+        <!--     <form ng-submit="uploadFile()">
+		   <div class="row">
+		         <div class="col-md-12">
+		                  <input type="text" ng-model="model.fileDescription" />
+		                  <input type="number" ng-model="model.rating" />
+		                  <input type="checkbox" ng-model="model.isAGoodFile" />
+		                  <input type="file" ng-file-select="onFileSelect($files)">
+		                  <button button type="submit" class="btn btn-default btn-lg">
+		                    <i class="fa fa-cloud-upload"></i>
+		                    &nbsp;
+		                    <span>Upload File</span>
+		                  </button>
+		                </div>
+		              </div>
+            </form> -->
+      
+      <!-- END panel-->
+   </div>
+   <br><br>
+  
+</div>
+<!-- END row-->
+
+
+</div>
+</div>

@@ -1,0 +1,108 @@
+
+  <!-- Content Wrapper. Contains page content -->
+  <div  ng-controller="productController" ng-init="init()">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        User Management
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Forms</a></li>
+        <li class="active">General Elements</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <!-- left column -->
+           <div class="col-md-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">View/Edit Products</h3>
+            </div>
+            <!-- /.box-header -->
+              <div class="box-body"><div class="input-group col-md-3"></div>
+            <div class="input-group col-md-3">
+	          <input type="text" ng-model="searchText" class="form-control" placeholder="Search...">
+	              <span class="input-group-btn">
+	                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+	                </button>
+	              </span>
+	        </div>
+          
+            
+              
+              
+              <table class="table table-bordered table-hover table-condensed" style="margin-top:10px">
+             <thead>
+                <tr>
+                  <th>Sr No</th>
+                  <th>Product Name</th>
+                  <th>Product Price</th>
+                  <th>Description</th>
+                   <th>Edit</th>
+                </tr>
+                </thead>
+                  <tbody dir-paginate="product in productList | filter:searchText | itemsPerPage: 5" current-page="currentPage">
+           		 <tr>
+           		 <td>{{ 1+$index + (currentPage - 1) * pageSize}}</td>
+                <td>
+                    <!-- editable username (text with validation) -->
+                    <span editable-text="product.name" e-name="name" e-form="rowform">
+                        {{ product.name || '--' }}
+                    </span>
+                </td>
+                 <td>
+                    <!-- editable username (text with validation) -->
+                    <span editable-text="product.price" e-name="price" e-form="rowform">
+                        {{ product.price || '--' }}
+                    </span>
+                </td>
+                <td>
+                    <!-- editable status (select-local) -->
+                    <span editable-text="product.description" e-name="description" e-form="rowform" >
+                        {{ product.description || '--' }}
+                    </span>
+                </td>
+                <td style="white-space: nowrap">
+                    <!-- form -->
+                    <form editable-form name="rowform" onbeforesave="updateProduct($data, product.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == product">
+                        <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-success">
+                            save
+                        </button>
+                        <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-warning">
+                            cancel
+                        </button>
+                    </form>
+                    <div class="buttons" ng-show="!rowform.$visible">
+                        <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
+                    </div>
+                </td>
+            </tr>
+             </tbody>
+        </table>
+        
+        
+               <div class="text-left">
+						<dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="resources/views/common/dirPagination.tpl.html"></dir-pagination-controls>
+				</div>
+				      
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+
+          <!-- Input addon -->
+
+        </div>
+        <!--/.col (left) -->
+        <!-- right column -->
+        <!--/.col (right) -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
